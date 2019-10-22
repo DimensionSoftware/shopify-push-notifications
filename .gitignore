@@ -1,0 +1,16 @@
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.expo-shared/
+node_modules/**/*
+node_modules
+.expo
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/

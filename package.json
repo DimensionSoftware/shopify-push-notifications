@@ -1,0 +1,55 @@
+{
+    "name": "shopify-push-notifications",
+    "version": "0.0.1",
+    "description": "The simplest way to add push notifications to your Shopify store",
+    "source": "src/index.ts",
+    "main": "dist/index.ts",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.module.ts",
+    "unpkg": "dist/index.umd.ts",
+    "repository": "git@github.com:DimensionSoftware/shopify-push-notifications.git",
+    "author": "Dimension Software <support@dimensionsoftware.com> (https://dimensionsofware.com)",
+    "homepage": "https://github.com/DimensionSoftware/shopify-push-notifications",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "build": "microbundle src/*",
+        "prepare": "yarn run build",
+        "dev": "microbundle watch src/*"
+    },
+    "files": [
+        "src",
+        "dist"
+    ],
+    "dependencies": {
+        "node-fetch": "^2.6.0"
+    },
+    "devDependencies": {
+        "@types/node-fetch": "^2.5.2",
+        "eslint": "^6.5.1",
+        "eslint-config-prettier": "^6.4.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.16.0",
+        "microbundle": "^0.11.0",
+        "prettier": "^1.18.2"
+    },
+    "peerDependencies": {
+    },
+    "eslintConfig": {
+        "extends": [
+            "plugin:prettier/recommended",
+            "plugin:react/recommended"
+        ],
+        "env": {
+            "browser": true,
+            "es6": true
+        },
+        "globals": {
+            "Atomics": "readonly",
+            "SharedArrayBuffer": "readonly"
+        },
+        "parserOptions": {
+            "ecmaVersion": 2018
+        }
+    }
+}
