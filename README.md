@@ -9,7 +9,7 @@
 
 </p>
 
-## Native iOS + Android Support
+## Web + Native iOS + Android Support
 
 [Push Notifications to Shopify and your native app, through our Passwordless Login App][pw-link] using this example React Native codebase, no native modules to link & [Expo friendly!][expo-link]
 <br />
