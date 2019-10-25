@@ -21,9 +21,11 @@
         "src",
         "dist"
     ],
-    "dependencies": {},
+    "dependencies": {
+    },
     "devDependencies": {
         "@types/node-fetch": "^2.5.2",
+        "@types/query-string": "^6.3.0",
         "eslint": "^6.6.0",
         "eslint-config-prettier": "^6.4.0",
         "eslint-plugin-prettier": "^3.1.1",
@@ -32,15 +34,15 @@
         "prettier": "^1.18.2"
     },
     "peerDependencies": {
-        "node-fetch": "^2.6.0"
+        "node-fetch": "^2.6.0",
+        "query-string": "^6.8.3"
     },
     "eslintConfig": {
         "extends": [
             "plugin:prettier/recommended",
             "plugin:react/recommended"
         ],
-        "env": {
-        },
+        "env": {},
         "globals": {
             "Atomics": "readonly",
             "SharedArrayBuffer": "readonly"
