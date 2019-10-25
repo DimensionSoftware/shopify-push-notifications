@@ -1,6 +1,6 @@
 {
     "name": "shopify-push-notifications",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "The simplest way to add push notifications to your Shopify store",
     "source": "src/index.ts",
     "main": "dist/index.ts",
@@ -26,15 +26,14 @@
     },
     "devDependencies": {
         "@types/node-fetch": "^2.5.2",
-        "eslint": "^6.5.1",
+        "eslint": "^6.6.0",
         "eslint-config-prettier": "^6.4.0",
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-react": "^7.16.0",
         "microbundle": "^0.11.0",
         "prettier": "^1.18.2"
     },
-    "peerDependencies": {
-    },
+    "peerDependencies": {},
     "eslintConfig": {
         "extends": [
             "plugin:prettier/recommended",

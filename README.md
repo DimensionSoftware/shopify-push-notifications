@@ -13,7 +13,6 @@
 
 [Push Notifications to Shopify and your native app, through our Passwordless Login App][pw-link] using this example React Native codebase, no native modules to link & [Expo friendly!][expo-link]
 <br />
-<br />
 
 [![Shopify Push Notifications for Web and React Native Apps][ss-image]][pw-link]
 
@@ -38,7 +37,7 @@ $ yarn add shopify-push-notifications
 #### *Step 2* &nbsp; // &nbsp; Push Message
 
 ```
-  res = await message('TITLE', 'Message body...', {withSome: 'data'})
+  res = await message('TITLE', 'Message body...', {withJSON: 'Optional data'})
   if (!res.success) console.warn(res.error)
   // message broadcasted!
 ```
