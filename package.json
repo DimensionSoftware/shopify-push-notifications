@@ -1,6 +1,6 @@
 {
     "name": "shopify-push-notifications",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The simplest way to add push notifications to your Shopify store",
     "source": "src/index.ts",
     "main": "dist/index.ts",
@@ -13,17 +13,15 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "build": "microbundle --target node --external crypto, stream src/*",
+        "build": "microbundle --inline all --target node --external 'crypto, stream' src/*",
         "prepare": "yarn run build",
-        "dev": "microbundle --target node --external crypto, stream watch src/*"
+        "dev": "microbundle --target node --external 'crypto, stream' watch src/*"
     },
     "files": [
         "src",
         "dist"
     ],
-    "dependencies": {
-        "node-fetch": "^2.6.0"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/node-fetch": "^2.5.2",
         "eslint": "^6.6.0",
@@ -33,15 +31,15 @@
         "microbundle": "^0.11.0",
         "prettier": "^1.18.2"
     },
-    "peerDependencies": {},
+    "peerDependencies": {
+        "node-fetch": "^2.6.0"
+    },
     "eslintConfig": {
         "extends": [
             "plugin:prettier/recommended",
             "plugin:react/recommended"
         ],
         "env": {
-            "browser": true,
-            "es6": true
         },
         "globals": {
             "Atomics": "readonly",
