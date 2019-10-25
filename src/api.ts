@@ -1,47 +1,42 @@
 import fetch from 'node-fetch'
+import * as queryString from 'query-string'
+import * as crypto from 'crypto'
+import { Push, PushResponse } from './index'
 
-const crypto = require('crypto'),
-  querystring = require('querystring'),
-  secret = process.env.SECRET // we must securely agree on this
-
-export const push = (store: string, secret: string) => {
-  const shop =
-    store.indexOf('.myshopify.com') > -1 ? store : `${store}.myshopify.com`
+export const push = (store: string, secret: string): Push => {
+  const shop = 'localhost' //shop = shopifyDomainFrom(store)
   return {
-    token: (token: string) => {
-      // TODO use body?
-      const seed = (
-          (crypto.randomFillSync(new Uint32Array(1))[0] / 4294967295) *
-          100
-        )
-          .toString()
-          .replace(/[^\d]/, ''),
-        url = `path_prefix=/apps/dimensionauth/api/push-token?token=${token}&shop=${shop}&seed=${seed}`,
-        sig = signature(secret, url)
-      // TODO make request to push token
-      console.log(
-        `https://${shop}/apps/dimensionauth/token?token=${token}&seed=${seed}&sig=${sig}`
-      )
-      return false
+    // insert token
+    token: async (token: string, customer?: string) => {
+      // make secure request with token in body
+      return request(shop, secret, '/push-token', { token, customer })
     },
-    message: (title: string, message: string, payload: object) => {
-      // TODO make request to push message
-      return false
+    message: (title: string, body: string, data: object) => {
+      // push message
+      return request(shop, secret, '/push-message', { title, body, data })
     }
   }
 }
 
 // helper fns
 // --------
+function shopifyDomainFrom(domain: string) {
+  if (domain.indexOf('myshopify.com') >= 0) {
+    return domain
+  } else {
+    return domain.indexOf('.') === -1 ? `${domain}.myshopify.com` : domain // should be a shopify stores' full domain
+  }
+}
+
+function generateSeed(): string {
+  return ((crypto.randomFillSync(new Uint32Array(1))[0] / 4294967295) * 100)
+    .toString()
+    .replace(/[^\d]/, '')
+}
+
 // generate signature required for request
-function signature(secret: string, url: string) {
-  const seed = (
-      (crypto.randomFillSync(new Uint32Array(1))[0] / 4294967295) *
-      100
-    )
-      .toString()
-      .replace(/[^\d]/, ''),
-    query = querystring.parse(url),
+function signature(secret: string, seed: string, url: string) {
+  const query = queryString.parse(url),
     q = Object.assign({}, query),
     sortedParams = Object.keys(q)
       .sort()
@@ -51,7 +46,39 @@ function signature(secret: string, url: string) {
       }, [])
       .join(''),
     hmac = crypto.createHmac('sha256', secret)
-  console.log('sorted params: ', sortedParams)
   hmac.update(sortedParams)
   return hmac.digest('hex')
+}
+
+async function request(
+  shop: string,
+  secret: string,
+  endpoint: string,
+  body: object
+) {
+  try {
+    const seed = generateSeed(),
+      url = `?seed=${seed}`,
+      sig = signature(secret, seed, url),
+      res = await fetch(
+        `http://${shop}:3000/api${endpoint}?${queryString.stringify(
+          // `https://${shop}/apps/dimensionauth/api${endpoint}?${queryString.stringify(
+          {
+            seed,
+            sig
+          }
+        )}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        }
+      ),
+      json = await res.json()
+    return json
+  } catch (error) {
+    return { success: false, error }
+  }
 }
