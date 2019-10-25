@@ -4,7 +4,7 @@ import * as crypto from 'crypto'
 import { Push, PushResponse } from './index'
 
 export const push = (store: string, secret: string): Push => {
-  const shop = 'localhost' //shop = shopifyDomainFrom(store)
+  const shop = shopifyDomainFrom(store)
   return {
     // insert token
     token: async (token: string, customer?: string) => {
@@ -61,8 +61,7 @@ async function request(
       url = `?seed=${seed}`,
       sig = signature(secret, seed, url),
       res = await fetch(
-        `http://${shop}:3000/api${endpoint}?${queryString.stringify(
-          // `https://${shop}/apps/dimensionauth/api${endpoint}?${queryString.stringify(
+        `https://${shop}/apps/dimensionauth/api${endpoint}?${queryString.stringify(
           {
             seed,
             sig

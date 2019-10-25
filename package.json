@@ -1,6 +1,6 @@
 {
     "name": "shopify-push-notifications",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "The simplest way to add push notifications to your Shopify store",
     "source": "src/index.ts",
     "main": "dist/index.ts",

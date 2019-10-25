@@ -11,7 +11,7 @@
         var seed = generateSeed(),
               url = "?seed=" + seed,
               sig = signature(secret, seed, url);
-        return Promise.resolve(fetch(("http://" + shop + ":3000/api" + endpoint + "?" + (queryString.stringify({
+        return Promise.resolve(fetch(("https://" + shop + "/apps/dimensionauth/api" + endpoint + "?" + (queryString.stringify({
           seed: seed,
           sig: sig
         }))), {
@@ -35,7 +35,7 @@
   };
 
   var push = function (store, secret) {
-    var shop = 'localhost';
+    var shop = shopifyDomainFrom(store);
     return {
       token: function (token, customer) {
         return request(shop, secret, '/push-token', {
@@ -52,6 +52,14 @@
       }
     };
   };
+
+  function shopifyDomainFrom(domain) {
+    if (domain.indexOf('myshopify.com') >= 0) {
+      return domain;
+    } else {
+      return domain.indexOf('.') === -1 ? (domain + ".myshopify.com") : domain;
+    }
+  }
 
   function generateSeed() {
     return (crypto.randomFillSync(new Uint32Array(1))[0] / 4294967295 * 100).toString().replace(/[^\d]/, '');
