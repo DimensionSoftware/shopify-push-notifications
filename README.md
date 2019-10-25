@@ -28,16 +28,20 @@ $ yarn add shopify-push-notifications
 
 #### *Step 1* &nbsp; // &nbsp; Save Token
 
+```
   const { token, message } = push('YOUR-STORE.myshopify.com, 'YOUR-SECRET')
-  const res = await token('exponentpushtoken[xxxxxxxxxxxxxxxxxxxxxx]')
+  let res = await token('exponentpushtoken[xxxxxxxxxxxxxxxxxxxxxx]')
   if (!res.success) console.warn(res.error)
   // web or expo token saved
+```
 
 #### *Step 2* &nbsp; // &nbsp; Push Message
 
-  const res2 = await message('TITLE', 'Message body...', {withSome: 'data'})
-  if (!res2.success) console.warn(res.error)
+```
+  res = await message('TITLE', 'Message body...', {withSome: 'data'})
+  if (!res.success) console.warn(res.error)
   // message broadcasted!
+```
 
 <br />
 <br />
