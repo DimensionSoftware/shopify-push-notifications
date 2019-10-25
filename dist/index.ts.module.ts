@@ -1,2 +1,2 @@
-export{push}from"./api.ts";
+export { push } from './api.ts';
 //# sourceMappingURL=index.ts.module.ts.map

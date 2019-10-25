@@ -1,4 +1,2 @@
-export declare const push: (store: string, secret: string) => {
-    token: (token: string) => boolean;
-    message: (title: string, message: string, payload: object) => boolean;
-};
+import { Push } from './index';
+export declare const push: (store: string, secret: string) => Push;

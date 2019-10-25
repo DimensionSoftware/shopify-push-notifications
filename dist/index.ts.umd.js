@@ -1,2 +1,9 @@
-!function(e,i){"object"==typeof exports&&"undefined"!=typeof module?i(exports,require("./api.ts")):"function"==typeof define&&define.amd?define(["exports","./api.ts"],i):i(e.shopifyPushNotifications={},e.api_ts)}(this,function(e,i){e.push=i.push});
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('./api.ts')) :
+  typeof define === 'function' && define.amd ? define(['exports', './api.ts'], factory) :
+  (factory((global.shopifyPushNotifications = {}),global.api_ts));
+}(this, (function (exports,api_ts) {
+  exports.push = api_ts.push;
+
+})));
 //# sourceMappingURL=index.ts.umd.js.map

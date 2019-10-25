@@ -1,2 +1,6 @@
-var p=require("./api.ts");exports.push=p.push;
+var api_ts = require('./api.ts');
+
+
+
+exports.push = api_ts.push;
 //# sourceMappingURL=index.ts.js.map
