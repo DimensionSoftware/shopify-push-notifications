@@ -13,16 +13,15 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "build": "microbundle --inline all --target node --external 'crypto, stream' src/*",
+        "build": "microbundle --inline all --target node src/*",
         "prepare": "yarn run build",
-        "dev": "microbundle --target node --external 'crypto, stream' watch src/*"
+        "dev": "microbundle --target node watch src/*"
     },
     "files": [
         "src",
         "dist"
     ],
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/node-fetch": "^2.5.2",
         "@types/query-string": "^6.3.0",
@@ -35,6 +34,7 @@
     },
     "peerDependencies": {
         "node-fetch": "^2.6.0",
+        "node-forge": "^0.9.1",
         "query-string": "^6.8.3"
     },
     "eslintConfig": {
