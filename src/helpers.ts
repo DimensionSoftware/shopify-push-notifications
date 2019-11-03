@@ -30,7 +30,6 @@ function signature(secret: string, seed: string, url: string) {
       }, [])
       .join(''),
     hmac = forge.hmac.create()
-  console.log('sorted params: ', sortedParams)
   hmac.start('sha256', secret)
   hmac.update(sortedParams)
   return hmac.digest().toHex()
