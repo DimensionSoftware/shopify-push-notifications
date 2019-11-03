@@ -30,6 +30,7 @@ function signature(secret: string, seed: string, url: string) {
       }, [])
       .join(''),
     hmac = forge.hmac.create()
+  console.log('sorted params: ', sortedParams)
   hmac.start('sha256', secret)
   hmac.update(sortedParams)
   return hmac.digest().toHex()
@@ -43,7 +44,7 @@ async function request(
 ) {
   try {
     const seed = generateSeed(),
-      url = `?seed=${seed}`,
+      url = `?path_prefix=/apps/dimensionauth&seed=${seed}&shop=${shop}`,
       sig = signature(secret, seed, url),
       res = await fetch(
         `https://${shop}/apps/dimensionauth/api${endpoint}?${queryString.stringify(

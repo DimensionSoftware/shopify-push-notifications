@@ -1,27 +1,2 @@
-var helpers_ts = require('./helpers.ts');
-
-var push = function (store, secret) {
-  var shop = helpers_ts.shopifyDomainFrom(store);
-  return {
-    token: function (token, customer) {
-      try {
-        return Promise.resolve(helpers_ts.request(shop, secret, '/push-token', {
-          token: token,
-          customer: customer
-        }));
-      } catch (e) {
-        return Promise.reject(e);
-      }
-    },
-    message: function (title, body, data) {
-      return helpers_ts.request(shop, secret, '/push-message', {
-        title: title,
-        body: body,
-        data: data
-      });
-    }
-  };
-};
-
-exports.push = push;
+var e=require("./helpers.ts");exports.push=function(r,t){var s=e.shopifyDomainFrom(r);return{token:function(r,o){try{return Promise.resolve(e.request(s,t,"/push-token",{token:r,customer:o}))}catch(e){return Promise.reject(e)}},message:function(r,o,n){return e.request(s,t,"/push-message",{title:r,body:o,data:n})}}};
 //# sourceMappingURL=api.ts.js.map
