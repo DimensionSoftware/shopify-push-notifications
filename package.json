@@ -22,7 +22,7 @@
         "dist"
     ],
     "dependencies": {
-        "node-forge": "^0.9.1",
+        "node-forge": "^1.0.0",
         "query-string": "^6.8.3"
     },
     "devDependencies": {
